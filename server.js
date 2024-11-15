@@ -12,6 +12,11 @@ app.get("/", (req, res) => {
     res.render(script.js);
 });
 
+app.post("/tasks", (req, res) => {
+    res.send(req.body);
+    tasks.push(req.body);
+})
+
 app.listen(PORT, () => {
-    console.log(`Serve running on http://localhost:${PORT}/`);
+    console.log(`Server running on http://localhost:${PORT}/`);
 });

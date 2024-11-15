@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: block;
+    width: 20vh;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input {
+    border-radius: 10cap;
+}
+
+button {
+    border-radius: 25cap;
+    height: 50px;
+    width: 50px;
+}
+
+ul {
+    display: block;
+    padding-left: 20px;
+}
+
+li {
+    margin: 5px;
+}
