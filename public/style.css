@@ -14,13 +14,13 @@ body {
 
 .container {
     display: block;
-    width: 20vh;
+    width: 40vh;
 }
 
 h1 {
     display: flex;
     justify-content: center;
-    font-size: 38px;
+    font-size: 76px;
 }
 
 #form {
@@ -32,14 +32,42 @@ h1 {
 input {
     border-radius: 10px;
     border: 2px solid white;
+    width: 85%;
+    font-size: 24px;
+    height: 56px;
+    font-family: "Roboto Mono", monospace;
+    text-indent: 10px;
+}
+
+input::placeholder {
+    color: black;
+    opacity: 0.5;
+    margin-left: 5px;
+}
+
+input:placeholder-shown {
+    background-color: white;
+    text-indent: 10px;
+    font-family: "Roboto Mono", monospace;
+}
+
+#addButton {
+    border-radius: 20px;
+    height: 56px;
+    width: 56px;
+    border: 2px solid white;
+    font-size: 30px;
+    background-color: #28282B;
+    color: white;
 }
 
 button {
     border-radius: 20px;
-    height: 50px;
-    width: 50px;
+    height: 48px;
+    width: 48px;
     border: 2px solid white;
-    font-size: 30px;
+    font-size: 28px;
+    font-family: "Roboto Mono", monospace;
     background-color: #28282B;
     color: white;
 }
@@ -50,11 +78,23 @@ button:hover {
     border: 2px solid #98FF98;
 }
 
+h1:hover {
+    color: #98FF98;
+}
+
+li:hover {
+    color: #98FF98;
+}
+
 ul {
     display: block;
     padding-left: 20px;
 }
 
 li {
-    margin: 5px;
+    margin: 5%;
+    font-size: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

@@ -8,11 +8,8 @@ app.use(express.static("public"));
 app.use(cors());
 app.use(express.json());
 
-let tasks = [ {
-    id: 1,
-    task: "do homework"
-}];
-let taskId = 2;
+let tasks = [];
+let taskId = 0;
 
 app.get("/", (req, res) => {
     res.render("script.js")
@@ -31,6 +28,12 @@ app.post("/tasks", (req, res) => {
     };
     tasks.push(newTask);
     res.json(newTask);
+})
+
+app.delete("/tasks/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    tasks = tasks.filter((task) => task.id !== id);
+    res.sendStatus(200);
 })
 
 app.listen(PORT, () => {
