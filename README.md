@@ -12,5 +12,5 @@ The most basic project out there. Here are some of the functionalities:
 > npm install
 3. Run via Node
 > node server.js
-or
+
 > npm start
