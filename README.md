@@ -14,3 +14,4 @@ The most basic project out there. Here are some of the functionalities:
 > node server.js
 
 > npm start
+4. View on http://localhost:3000/
