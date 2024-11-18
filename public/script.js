@@ -1,29 +1,56 @@
-const addButton = document.getElementById("addButton");
-let tasks = ["Wash dishes", "Do homework"];
-let unorderedListOfTasks = document.getElementById("unorderedListOfTasks");
+function handleTaskSubmission(event) {
+    event.preventDefault();
+    let taskName = document.getElementById("taskName").value;
+    addTaskToBackend(taskName);
 
-const API_URL = "http://localhost:3000/tasks";
-
-async function fetchTasks() {
-    const response = await fetch(API_URL);
-    const tasks = await response.json();
-    return tasks;
+    document.getElementById("taskName").value = "";
 }
 
-displayTasks();
+document.getElementById("form").addEventListener("submit", handleTaskSubmission);
 
-function displayTasks() {
-    // const tasks = await fetchTasks();
-    for (i = 0; i < tasks.length; i++) {
-        let li = document.createElement('li');
-        li.innerText = tasks[i];
-        unorderedListOfTasks.appendChild(li);
-    }
+window.addEventListener("DOMContentLoaded", fetchTasks);
+
+
+function fetchTasks() {
+    fetch("/tasks")
+        .then((response) => response.json())
+        .then((tasks) => {
+            console.log("Fetched tasks: ", tasks);
+            let unorderedListOfTasks = document.getElementById("unorderedListOfTasks");
+            unorderedListOfTasks.innerHTML = "";
+            for (let i = 0; i < tasks.length; i++) {
+                const li = document.createElement('li');
+                li.textContent = tasks[i].task;
+                unorderedListOfTasks.appendChild(li);
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching tasks", error);
+        });
 }
 
-addButton.addEventListener("click", function() {
-    var taskName = document.getElementById("taskName").value;
-    tasks.push(taskName);
-    console.log(tasks);
-    displayTasks();
-});
+function addTaskToBackend(taskName) {
+    fetch("/tasks", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ task: taskName })
+    })
+        .then((response) => response.json())
+        .then((newTask) => {
+            addTaskToList(newTask);
+        })
+        .catch((error) => {
+            console.error("Error adding tasks", error);
+        });
+}
+
+function addTaskToList(newTask) {
+    let unorderedListOfTasks = document.getElementById("unorderedListOfTasks");
+    let li = document.createElement('li');
+    li.textContent = newTask.task;
+    unorderedListOfTasks.appendChild(li);
+}
+
+
