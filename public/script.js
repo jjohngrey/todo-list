@@ -1,13 +1,19 @@
 function handleTaskSubmission(event) {
+    
     event.preventDefault();
-
     let taskName = document.getElementById("taskName").value;
-
     if (taskName.length <= 0) {
         alert("No task was specified. Please add task name.");
-    } else {
-        addTaskToBackend(taskName);
     }
+    fetch("/tasks")
+        .then((response) => response.json())
+        .then((tasks) => {
+             if (tasks.length > 10) {
+                alert("Too many tasks. Delete one before adding another");
+            } else {
+                addTaskToBackend(taskName);
+            }
+        })
 
     document.getElementById("taskName").value = "";
 }
